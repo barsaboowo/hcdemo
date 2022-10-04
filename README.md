@@ -7,6 +7,7 @@
 * Thereby the workload can be distributed evenly across any number of instances.
 * Instances are discovered automatically and added to the cluster if the deployment is scaled in Kubernetes.
 * Camel is also using Kubernetes as a load balancer for Producer routes using the ClusterPolicy.
+* NOTE: this is needed in your K8s cluster: kubectl apply -f https://raw.githubusercontent.com/hazelcast/hazelcast/master/kubernetes-rbac.yaml
 
 ### Reference Documentation
 
