@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hcdemo
+  name: hcdemo
+  namespace: default
+spec:
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: p2
+    port: 5702
+    protocol: TCP
+    targetPort: 5702
+  - name: p1
+    port: 5701
+    protocol: TCP
+    targetPort: 5702
+  selector:
+    app: hcdemo
+  sessionAffinity: None
+  type: ClusterIP

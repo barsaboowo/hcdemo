@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hcdemo
+  name: hcdemo
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hcdemo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hcdemo
+    spec:
+      containers:
+      - env:
+        - name: kube.namespace
+          value: default
+        - name: kube.servicename
+          value: hcdemo
+        image: com.sam.hcdemo/demo:0.0.1-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: demo
+      restartPolicy: Always
